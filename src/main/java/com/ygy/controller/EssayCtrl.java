@@ -1,14 +1,20 @@
 package com.ygy.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.ygy.dao.EssayDao;
 import com.ygy.model.Essay;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -34,8 +40,22 @@ public class EssayCtrl {
     @RequestMapping(value = "/essay/ale",method = RequestMethod.GET)
     public String AllEssay(Model model){
         List<Essay> list= this.dao.SelectAllEssay();
-
         model.addAttribute("list",list);
         return "ygy";
+    }
+    @RequestMapping(value = "/essay/bypage",method = RequestMethod.GET)
+    public String findByPage(@RequestParam(required=true,defaultValue="1") Integer page, HttpServletRequest request, Model model){
+        PageHelper.startPage(page,2);
+        List<Essay> essayList=this.dao.findByPage();
+        PageInfo<Essay> p=new PageInfo<Essay>(essayList);
+        model.addAttribute("p",p);
+        model.addAttribute("essayList",essayList);
+        return "blog";
+    }
+    @RequestMapping("/essay/select1")
+    public String selectById(int eid,Model model){
+       Essay essay=this.dao.findById(eid);
+       model.addAttribute("essay",essay);
+        return "blogContent";
     }
 }

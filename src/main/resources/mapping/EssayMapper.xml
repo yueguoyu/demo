@@ -314,4 +314,14 @@
     <select id="selectAllEssay"  resultMap="EssayList">
     SELECT * FROM essay where 1=1;
   </select>
+    <select id="findByPage" resultMap="BaseResultMap">
+        SELECT 
+        <include refid="Base_Column_List"/>
+        FROM essay
+    </select>
+    <select id="findById" parameterType="int" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM essay WHERE eid=#{eid}
+    </select>
 </mapper>

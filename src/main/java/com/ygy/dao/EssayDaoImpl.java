@@ -1,5 +1,6 @@
 package com.ygy.dao;
 
+import com.github.pagehelper.PageHelper;
 import com.ygy.mapper.EssayMapper;
 import com.ygy.model.Essay;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,5 +49,15 @@ public class EssayDaoImpl implements EssayDao {
     @Override
     public List<Essay> SelectAllEssay() {
         return this.mapper.selectAllEssay();
+    }
+
+    @Override
+    public List<Essay> findByPage() {
+        return this.mapper.findByPage();
+    }
+
+    @Override
+    public Essay findById(int eid) {
+        return this.mapper.findById(eid);
     }
 }

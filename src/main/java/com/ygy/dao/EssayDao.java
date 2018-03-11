@@ -1,6 +1,7 @@
 package com.ygy.dao;
 
 import com.ygy.model.Essay;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -9,9 +10,17 @@ import java.util.List;
  * @date 2018/2/7
  */
 public interface EssayDao {
-    public Essay SelectTitle(String title);
-    public int addText(Essay essay);
-    public int updateText(Essay essay);
-    public int delete(int eid);
-    public List<Essay> SelectAllEssay();
+    Essay SelectTitle(String title);
+
+    int addText(Essay essay);
+
+    int updateText(Essay essay);
+
+    int delete(int eid);
+
+    List<Essay> SelectAllEssay();
+
+    List<Essay> findByPage();
+    Essay findById(int eid);
+
 }

@@ -26,3 +26,8 @@ mybatis:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 logging:
   level: debug
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql

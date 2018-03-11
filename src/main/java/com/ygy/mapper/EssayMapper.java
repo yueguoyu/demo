@@ -4,6 +4,7 @@ import com.ygy.model.Essay;
 import com.ygy.model.EssayExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.data.domain.Page;
 
 public interface EssayMapper {
     /**
@@ -95,5 +96,6 @@ public interface EssayMapper {
     int updateByPrimaryKey(Essay record);
     Essay selectTitle(String title);
     List<Essay> selectAllEssay();
-
+    List<Essay> findByPage();
+    Essay findById(int eid);
 }

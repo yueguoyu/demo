@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>博客</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- 可选的Bootstrap主题文件（一般不使用） -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"></script>
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <nav class="navbar navbar-default navbar-inverse" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span>
+                        <span class="icon-bar"></span></button>
+                    <a class="navbar-brand" href="/">博客</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="/" class="glyphicon glyphicon-home">Home</a>
+                        </li>
+                        <li>
+                            <a href="/essay/bypage" class="glyphicon glyphicon-book">Blog</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">type<strong class="caret"></strong></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">Action</a>
+                                </li>
+                                <li>
+                                    <a href="#">Another action</a>
+                                </li>
+                                <li>
+                                    <a href="#">Something else here</a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">Separated link</a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">One more separated link</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" />
+                        </div> <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#wo">联系我</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">Action</a>
+                                </li>
+                                <li>
+                                    <a href="#">Another action</a>
+                                </li>
+                                <li>
+                                    <a href="#">Something else here</a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">Separated link</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+            </nav>
+            <dl>
+                <dt th:each="essay:${essayList}" class="jumbotron well">
+                    <h1 th:text="${essay.title}">
+                    </h1>
+                    <p th:text="${essay.text}">
+                        This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
+                    </p>
+                    <p>
+                        <a class="btn btn-primary btn-large" th:href="@{select1?(eid=${essay.eid})}">Learn more</a>
+                    </p>
+                </dt>
+            </dl>
+
+        </div>
+    </div>
+    <div class="row clearfix">
+            <div class="col-md-12 column">
+
+                <ul class="pagination">
+                    <li>
+                        <a th:href="@{bypage?(page=${p.prePage})}">prev</a>
+                    </li>
+                    <li>
+                        <a th:href="@{bypage?page=1}">1</a>
+                    </li>
+                    <li>
+                        <a th:href="@{bypage?page=2}">2</a>
+                    </li>
+                    <li>
+                        <a th:href="@{bypage?page=3}">3</a>
+                    </li>
+                    <li>
+                        <a th:href="@{bypage?page=4}">4</a>
+                    </li>
+                    <li>
+                        <a th:href="@{bypage?page=5}">5</a>
+                    </li>
+                    <li>
+                        <a th:href="@{bypage?(page=${p.nextPage})}">Next</a>
+                    </li>
+                </ul>
+            </div>
+    </div>
+</div>
+</body>
+</html>
