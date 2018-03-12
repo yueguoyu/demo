@@ -60,4 +60,9 @@ public class EssayDaoImpl implements EssayDao {
     public Essay findById(int eid) {
         return this.mapper.findById(eid);
     }
+
+    @Override
+    public List<Essay> findByCateName(String  cateName) {
+        return this.mapper.findByCateName(cateName);
+    }
 }

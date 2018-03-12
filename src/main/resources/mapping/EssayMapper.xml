@@ -324,4 +324,9 @@
         <include refid="Base_Column_List"/>
         FROM essay WHERE eid=#{eid}
     </select>
+    <!--类型查询-->
+    <select id="findByCateName" parameterType="String" resultMap="BaseResultMap">
+    select e.eid,e.title,e.text, c.cateName,e.cid from essay e
+  INNER JOIN category c ON e.cid = c.cid WHERE c.cateName=#{cateName}
+    </select>
 </mapper>

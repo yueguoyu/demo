@@ -94,8 +94,40 @@ public interface EssayMapper {
      * @mbggenerated Thu Feb 01 13:09:43 CST 2018
      */
     int updateByPrimaryKey(Essay record);
+
+    /**
+     * 根据标题查询
+     * @param title
+     * @return Essay
+     *
+     */
     Essay selectTitle(String title);
+    /**
+     * 查询全部
+     * @param
+     * @return LIst<Essay>
+     *
+     */
     List<Essay> selectAllEssay();
+    /**
+     * 分页查找
+     * @param
+     * @return LIst<Essay>
+     *
+     */
     List<Essay> findByPage();
+
+    /**
+     * 通过文章id查询
+     * @param eid
+     * @return Essay
+     */
     Essay findById(int eid);
+
+    /**
+     * 类型查询
+     * @param cateName
+     * @return Essay
+     */
+   List<Essay> findByCateName(String  cateName);
 }

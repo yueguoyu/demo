@@ -38,7 +38,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">type<strong class="caret"></strong></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="#">Action</a>
+                                    <a href="cate?cateName=java">java</a>
                                 </li>
                                 <li>
                                     <a href="#">Another action</a>
@@ -111,25 +111,25 @@
 
                 <ul class="pagination">
                     <li>
-                        <a th:href="@{bypage?(page=${p.prePage})}">prev</a>
+                        <a th:href="@{${http}+'page='+${p.prePage}}">prev</a>
                     </li>
                     <li>
-                        <a th:href="@{bypage?page=1}">1</a>
+                        <a th:href="@{${http}+'page=1'}">1</a>
                     </li>
                     <li>
-                        <a th:href="@{bypage?page=2}">2</a>
+                        <a th:href="@{${http}+'page=2'}">2</a>
                     </li>
                     <li>
-                        <a th:href="@{bypage?page=3}">3</a>
+                        <a th:href="@{${http}+'page=3'}">3</a>
                     </li>
                     <li>
-                        <a th:href="@{bypage?page=4}">4</a>
+                        <a th:href="@{${http}+'page=4'}">4</a>
                     </li>
                     <li>
-                        <a th:href="@{bypage?page=5}">5</a>
+                        <a th:href="@{${http}+'page=5'}">5</a>
                     </li>
                     <li>
-                        <a th:href="@{bypage?(page=${p.nextPage})}">Next</a>
+                        <a th:href="@{${http}+'page='+${p.nextPage}}">Next</a>
                     </li>
                 </ul>
             </div>
