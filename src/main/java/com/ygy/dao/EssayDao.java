@@ -64,4 +64,11 @@ public interface EssayDao {
      */
     List<Essay> findByCateName(String cateName);
 
+    /**
+     * 通过标题模糊查询
+     * @param title
+     * @return
+     */
+    List<Essay> findByDim(String title);
+
 }

@@ -10,11 +10,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -52,7 +53,7 @@ public class EssayCtrl {
         PageHelper.startPage(page, 3);
         List<Essay> essayList = this.dao.findByPage();
         PageInfo<Essay> p = new PageInfo<Essay>(essayList);
-        model.addAttribute("http","bypage?");
+        model.addAttribute("http", "bypage?");
         model.addAttribute("p", p);
         model.addAttribute("essayList", essayList);
         return "blog";
@@ -66,11 +67,33 @@ public class EssayCtrl {
     }
 
     @RequestMapping(value = "/essay/cate", method = RequestMethod.GET)
-    public String findByCateName(String cateName,@RequestParam(required = true, defaultValue = "1") Integer page, HttpServletRequest request, Model model){
+    public String findByCateName(String cateName, @RequestParam(required = true, defaultValue = "1") Integer page, HttpServletRequest request, Model model) {
         PageHelper.startPage(page, 1);
         List<Essay> essayList = this.dao.findByCateName(cateName);
         PageInfo<Essay> p = new PageInfo<Essay>(essayList);
-        model.addAttribute("http","cate?cateName=java&");
+        model.addAttribute("input", cateName);
+        model.addAttribute("http", "cate?cateName=");
+        model.addAttribute("p", p);
+        model.addAttribute("essayList", essayList);
+        return "blog";
+    }
+
+
+    @RequestMapping("/essay/dim")
+    public
+    String login(@Valid Essay essay, BindingResult result, Model model,@RequestParam(required = true, defaultValue = "1") Integer page) {
+        if (result.hasErrors()) {
+            List<ObjectError> error = result.getAllErrors();
+            for (ObjectError e : error) {
+                System.out.println(e);
+            }
+            return null;
+        }
+        PageHelper.startPage(page, 1);
+        List<Essay> essayList=this.dao.findByDim(essay.getTitle());
+        PageInfo<Essay> p = new PageInfo<Essay>(essayList);
+        model.addAttribute("input", essay.getTitle());
+        model.addAttribute("http", "dim?title=");
         model.addAttribute("p", p);
         model.addAttribute("essayList", essayList);
         return "blog";

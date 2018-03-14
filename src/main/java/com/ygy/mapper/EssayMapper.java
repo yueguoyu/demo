@@ -130,4 +130,11 @@ public interface EssayMapper {
      * @return Essay
      */
    List<Essay> findByCateName(String  cateName);
+
+    /**
+     * 标题模糊查询
+     * @param title
+     * @return
+     */
+   List<Essay> findByDim(String title);
 }

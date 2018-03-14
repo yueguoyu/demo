@@ -311,22 +311,34 @@
     <insert id="insertEssay" parameterType="com.ygy.model.Essay">
     insert INTO essay(cid,title, text) VALUES (#{cid},#{title},#{text})
   </insert>
-    <select id="selectAllEssay"  resultMap="EssayList">
+    <select id="selectAllEssay" resultMap="EssayList">
     SELECT * FROM essay where 1=1;
   </select>
     <select id="findByPage" resultMap="BaseResultMap">
-        SELECT 
+        SELECT
         <include refid="Base_Column_List"/>
         FROM essay
     </select>
-    <select id="findById" parameterType="int" resultMap="BaseResultMap">
+    <select id="findById"  resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM essay WHERE eid=#{eid}
+        FROM essay
+       <where>
+           eid=#{eid}
+       </where>
+
     </select>
     <!--类型查询-->
     <select id="findByCateName" parameterType="String" resultMap="BaseResultMap">
     select e.eid,e.title,e.text, c.cateName,e.cid from essay e
   INNER JOIN category c ON e.cid = c.cid WHERE c.cateName=#{cateName}
+    </select>
+    <!--模糊查询-->
+    <select id="findByDim" parameterType="String" resultMap="BaseResultMap">
+        select * FROM essay
+        <where>
+            essay.title LIKE "%"#{title}"%"
+        </where>
+        ORDER BY eid
     </select>
 </mapper>
