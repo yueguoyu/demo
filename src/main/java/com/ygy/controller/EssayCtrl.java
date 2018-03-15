@@ -36,9 +36,24 @@ public class EssayCtrl {
         return "ygy";
     }
 
+    /**
+     * markDown添加博客
+     * @param essay
+     * @return
+     */
     @RequestMapping(value = "/essay/add", method = RequestMethod.POST)
-    public String addEssay() {
-        return "main";
+    public String addEssayByMarkD(@ModelAttribute(value = "Essay") Essay essay) {
+        System.out.println("text:   " + essay.getText());
+        return "main0";
+    }
+
+    /**
+     * 添加博客
+     */
+
+    @RequestMapping(value = "/test1", method = RequestMethod.GET)
+    public String addEssay(@ModelAttribute(value = "Essay") Essay essay) {
+        return "main0";
     }
 
     @RequestMapping(value = "/essay/ale", method = RequestMethod.GET)
@@ -80,8 +95,7 @@ public class EssayCtrl {
 
 
     @RequestMapping("/essay/dim")
-    public
-    String login(@Valid Essay essay, BindingResult result, Model model,@RequestParam(required = true, defaultValue = "1") Integer page) {
+    public String login(@Valid Essay essay, BindingResult result, Model model, @RequestParam(required = true, defaultValue = "1") Integer page) {
         if (result.hasErrors()) {
             List<ObjectError> error = result.getAllErrors();
             for (ObjectError e : error) {
@@ -90,7 +104,7 @@ public class EssayCtrl {
             return null;
         }
         PageHelper.startPage(page, 1);
-        List<Essay> essayList=this.dao.findByDim(essay.getTitle());
+        List<Essay> essayList = this.dao.findByDim(essay.getTitle());
         PageInfo<Essay> p = new PageInfo<Essay>(essayList);
         model.addAttribute("input", essay.getTitle());
         model.addAttribute("http", "dim?title=");
@@ -98,4 +112,12 @@ public class EssayCtrl {
         model.addAttribute("essayList", essayList);
         return "blog";
     }
+
+    @RequestMapping("/test")
+    public String test(Model model) {
+        Essay essay = this.dao.findById(5);
+        model.addAttribute("essay", essay);
+        return "markDown";
+    }
+
 }

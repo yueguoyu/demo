@@ -2,9 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8">
     <title>Title</title>
-    <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- 可选的Bootstrap主题文件（一般不使用） -->
@@ -15,44 +14,31 @@
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="/images/js/markdown.js"></script>
+    <script src="images/js/markdown.js"></script>
 
-<style>
-
-    textarea {
-            border: none;
-    }
-    #preview{
-
-    }
-</style>
 </head>
 <body>
-
 <div class="container">
     <div class="row clearfix">
         <div class="col-md-12 column">
             <nav class="navbar navbar-default navbar-inverse" role="navigation">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span>
-                        <span class="icon-bar"></span></button>
-                    <a class="navbar-brand" href="/">博客</a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">Brand</a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li class="active">
-                            <a href="/" class="glyphicon glyphicon-home">Home</a>
+                            <a href="#">Link</a>
                         </li>
                         <li>
-                            <a href="/essay/bypage" class="glyphicon glyphicon-book">Blog</a>
+                            <a href="#">Link</a>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">type<strong class="caret"></strong></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="cate?cateName=java">java</a>
+                                    <a href="#">Action</a>
                                 </li>
                                 <li>
                                     <a href="#">Another action</a>
@@ -73,17 +59,14 @@
                             </ul>
                         </li>
                     </ul>
-
-                    <form class="navbar-form navbar-left"  role="search" action="/essay/dim" method="get" >
+                    <form class="navbar-form navbar-left" role="search">
                         <div class="form-group">
-                            <input type="text"  class="form-control" name="title"/>
-                        </div>
-                        <button class="btn btn-default">submit</button>
+                            <input type="text" class="form-control" />
+                        </div> <button type="submit" class="btn btn-default">Submit</button>
                     </form>
-
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="#wo">关于我</a>
+                            <a href="#">Link</a>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
@@ -111,29 +94,17 @@
         </div>
     </div>
 </div>
-
 <div class="container">
     <div class="row clearfix">
         <div class="col-md-12 column">
-            <div class="row clearfix">
-                <div class="col-md-6 column">
-                    <form th:action="@{/essay/add}" th:object="${Essay}" th:method="post">
-                        <textarea th:field="*{text}" id="text-input"
-                                   oninput="this.editor.update()"
-                                   rows="30" cols="80" >#dsadsa</textarea>
-                        <input type="submit" value="go"/>
-                    </form>
-
-                </div>
-                <div class="col-md-6 column">
-                        <div style="width:556px;height:706px; overflow:scroll; border: none;">
-                            <p id="preview"></p>
-                        </div>
-
-                </div>
+            <div class="jumbotron">
+                <p id="preview"></p>
             </div>
         </div>
     </div>
+</div>
+<div style="display: none" class="jumbotron">
+    <textarea th:text="${essay.text}" id="text-input" oninput="this.editor.update()" rows="30" cols="80"></textarea>
 </div>
 <script>
     function Editor(input, preview) {
