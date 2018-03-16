@@ -32,14 +32,14 @@ public class EssayDaoImpl implements EssayDao {
         return this.mapper.selectTitle(title);
     }
 
-    @Cacheable
+    //@Cacheable
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int addText(Essay essay) {
         return this.mapper.insert(essay);
     }
 
-    @CachePut
+   // @CachePut
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int updateText(Essay essay) {

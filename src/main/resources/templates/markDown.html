@@ -14,7 +14,7 @@
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="images/js/markdown.js"></script>
+    <script src="/images/js/markdown.js"></script>
 
 </head>
 <body>
@@ -23,22 +23,25 @@
         <div class="col-md-12 column">
             <nav class="navbar navbar-default navbar-inverse" role="navigation">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">Brand</a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span>
+                        <span class="icon-bar"></span></button>
+                    <a class="navbar-brand" href="/">博客</a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li class="active">
-                            <a href="#">Link</a>
+                            <a href="/" class="glyphicon glyphicon-home">Home</a>
                         </li>
                         <li>
-                            <a href="#">Link</a>
+                            <a href="/essay/bypage" class="glyphicon glyphicon-book">Blog</a>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">type<strong class="caret"></strong></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="#">Action</a>
+                                    <a href="cate?cateName=java">java</a>
                                 </li>
                                 <li>
                                     <a href="#">Another action</a>
@@ -59,14 +62,17 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="navbar-form navbar-left" role="search">
+
+                    <form class="navbar-form navbar-left"  role="search" action="/essay/dim" method="get" >
                         <div class="form-group">
-                            <input type="text" class="form-control" />
-                        </div> <button type="submit" class="btn btn-default">Submit</button>
+                            <input type="text"  class="form-control" name="title"/>
+                        </div>
+                        <button class="btn btn-default">submit</button>
                     </form>
+
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="#">Link</a>
+                            <a href="/">关于我</a>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
@@ -98,6 +104,7 @@
     <div class="row clearfix">
         <div class="col-md-12 column">
             <div class="jumbotron">
+                <h1 th:text="${essay.title}"></h1>
                 <p id="preview"></p>
             </div>
         </div>
@@ -106,6 +113,23 @@
 <div style="display: none" class="jumbotron">
     <textarea th:text="${essay.text}" id="text-input" oninput="this.editor.update()" rows="30" cols="80"></textarea>
 </div>
+
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div style="padding: 100px 100px 10px;">
+                <form class="bs-example bs-example-form" role="form">
+
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-addon">@</span>
+                        <input type="text" class="form-control" placeholder="Twitterhandle">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     function Editor(input, preview) {
         this.update = function () {

@@ -98,14 +98,16 @@
                 <dt th:each="essay:${essayList}" class="jumbotron well">
                     <h1 th:text="${essay.title}">
                     </h1>
-                    <p th:text="${essay.text}">
-                        This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
-                    </p>
+                    <p th:text="${essay.title}"></p>
+                    <!--<p th:text="${essay.text}">-->
+                        <!--This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.-->
+                    <!--</p>-->
                     <p>
                         <a class="btn btn-primary btn-large" th:href="@{select1?(eid=${essay.eid})}">Learn more</a>
                     </p>
                 </dt>
             </dl>
+
 
         </div>
     </div>
@@ -138,5 +140,6 @@
             </div>
     </div>
 </div>
+
 </body>
 </html>

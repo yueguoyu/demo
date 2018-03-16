@@ -118,9 +118,19 @@
             <div class="row clearfix">
                 <div class="col-md-6 column">
                     <form th:action="@{/essay/add}" th:object="${Essay}" th:method="post">
+
+                        <textarea th:field="*{title}" placeholder="标题"/>
+
                         <textarea th:field="*{text}" id="text-input"
                                    oninput="this.editor.update()"
                                    rows="30" cols="80" >#dsadsa</textarea>
+
+                        <div class="btn-group">
+                            <input type="radio" name="radio1" value="1" th:field="*{uid}"/>java
+                            <input type="radio" name="radio1" value="2" th:field="*{uid}"/>mysql
+                            <input type="radio" name="radio1" value="3" th:field="*{uid}" />其他
+                        </div>
+                        <br/>
                         <input type="submit" value="go"/>
                     </form>
 

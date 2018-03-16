@@ -43,8 +43,9 @@ public class EssayCtrl {
      */
     @RequestMapping(value = "/essay/add", method = RequestMethod.POST)
     public String addEssayByMarkD(@ModelAttribute(value = "Essay") Essay essay) {
+        this.dao.addText(essay);
         System.out.println("text:   " + essay.getText());
-        return "main0";
+        return "enter";
     }
 
     /**
@@ -53,7 +54,7 @@ public class EssayCtrl {
 
     @RequestMapping(value = "/test1", method = RequestMethod.GET)
     public String addEssay(@ModelAttribute(value = "Essay") Essay essay) {
-        return "main0";
+        return "enter";
     }
 
     @RequestMapping(value = "/essay/ale", method = RequestMethod.GET)
@@ -78,7 +79,7 @@ public class EssayCtrl {
     public String selectById(int eid, Model model) {
         Essay essay = this.dao.findById(eid);
         model.addAttribute("essay", essay);
-        return "blogContent";
+        return "markDown";
     }
 
     @RequestMapping(value = "/essay/cate", method = RequestMethod.GET)
@@ -115,7 +116,7 @@ public class EssayCtrl {
 
     @RequestMapping("/test")
     public String test(Model model) {
-        Essay essay = this.dao.findById(5);
+        Essay essay = this.dao.findById(10);
         model.addAttribute("essay", essay);
         return "markDown";
     }
