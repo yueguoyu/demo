@@ -113,22 +113,107 @@
 <div style="display: none" class="jumbotron">
     <textarea th:text="${essay.text}" id="text-input" oninput="this.editor.update()" rows="30" cols="80"></textarea>
 </div>
-
 <div class="container">
     <div class="row clearfix">
         <div class="col-md-12 column">
-            <div style="padding: 100px 100px 10px;">
-                <form class="bs-example bs-example-form" role="form">
-
-                    <div class="input-group input-group-sm">
-                        <span class="input-group-addon">@</span>
-                        <input type="text" class="form-control" placeholder="Twitterhandle">
-                    </div>
-                </form>
+            <div class="jumbotron">
+                <div class="text-center article-title">
+                    登录后你可以发表评论，请先登录 <a id="modal-115854" href="#modal-container-115854" role="button" class="btn" data-toggle="modal">登陆>></a>
+                </div>
             </div>
+
         </div>
     </div>
 </div>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="modal fade" id="modal-container-115854" role="dialog" aria-labelledby="myModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <br/>
+                            <div class="text-center article-title">
+                                <h1>注册</h1>
+                            </div>
+                        </div>
+
+                        <form th:action="@{/login/adus}" th:object="${User}" th:method="post">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label font" for="phone">手机号</label>
+                                <div class="col-xs-10">
+                                    <input type="text" th:field="*{userid}" class="form-control bt" id="phone" placeholder="请输入手机号"
+                                           onkeyup="checkPhone()"><span id="tishi1"/>
+                                </div>
+
+                            </div>
+                            <br/><br/><br/>
+
+                            <div class="form-group">
+
+                                <label class="col-sm-2 control-label font">新密码</label>
+                                <div class="col-xs-10">
+                                    <input  th:field="*{password}" type="password" class="form-control bt" name="pwd" id="pwd"
+                                            placeholder="请设置新密码">
+                                </div>
+                            </div>
+                            <br/><br/><br/>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label font">确认新密码</label>
+                                <div class="col-xs-10">
+                                    <input type="password" class="form-control bt" name="pwd" id="pwd1"
+                                           placeholder="请再次填写新密码" onkeyup="validate()"><span id="tishi"></span>
+                                </div>
+                            </div>
+                            <br/><br/>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block xg">确认</button>
+                        </form>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+</div>
+<script>
+    function validate() {
+
+        var pwd = $("#pwd").val();
+        var pwd1 = $("#pwd1").val();
+        <!-- 对比两次输入的密码 -->
+        if(pwd == pwd1)
+        {
+            $("#tishi").html("两次密码相同");
+            $("#tishi").css("color","green");
+            $("button").removeAttr("disabled");
+        }
+        else {
+            $("#tishi").html("两次密码不相同");
+            $("#tishi").css("color","red");
+            $("button").attr("disabled","disabled");
+        }
+    }
+    function checkPhone(){
+        var phone = document.getElementById('phone').value;
+        if(!(/^1[34578]\d{9}$/.test(phone))){
+            $("#tishi1").html("手机号码有误，请重填");
+            $("#tishi1").css("color","red");
+            return false;
+        }else {
+            $("#tishi1").html("手机号码正确");
+            $("#tishi1").css("color","green");
+        }
+    }
+</script>
+
 
 <script>
     function Editor(input, preview) {

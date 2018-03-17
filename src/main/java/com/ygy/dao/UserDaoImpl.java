@@ -22,7 +22,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean UpdateUser(User user) {
+    public boolean updateUser(User user) {
       int num=this.mapper.updatePass(user);
       if (num>0){
           return true;
@@ -31,4 +31,8 @@ public class UserDaoImpl implements UserDao {
       }
     }
 
+    @Override
+    public int addUser(User user) {
+        return this.mapper.insert(user);
+    }
 }

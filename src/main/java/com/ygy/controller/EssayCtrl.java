@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.ygy.dao.EssayDao;
 import com.ygy.model.Essay;
+import com.ygy.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -44,7 +45,6 @@ public class EssayCtrl {
     @RequestMapping(value = "/essay/add", method = RequestMethod.POST)
     public String addEssayByMarkD(@ModelAttribute(value = "Essay") Essay essay) {
         this.dao.addText(essay);
-        System.out.println("text:   " + essay.getText());
         return "enter";
     }
 
@@ -76,7 +76,7 @@ public class EssayCtrl {
     }
 
     @RequestMapping("/essay/select1")
-    public String selectById(int eid, Model model) {
+    public String selectById(int eid, Model model,@ModelAttribute(value = "User") User user) {
         Essay essay = this.dao.findById(eid);
         model.addAttribute("essay", essay);
         return "markDown";

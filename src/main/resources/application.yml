@@ -31,3 +31,13 @@ pagehelper:
   reasonable: true
   support-methods-arguments: true
   params: count=countSql
+constans:
+      #qq
+      qqAppId: xxxxxxxx
+      qqAppSecret: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      qqRedirectUrl: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      #WECAT
+      weCatAppId: xxxxxxxxxx
+      weCatAppSecret: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      weCatRedirectUrl: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
