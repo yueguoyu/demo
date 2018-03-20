@@ -99,4 +99,5 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
     int selectByNamePass(User user);
     int updatePass(User user);
+    int updateStatus(User user);
 }

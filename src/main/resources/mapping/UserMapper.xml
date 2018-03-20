@@ -290,4 +290,9 @@
     SET password=#{password}
     WHERE name=#{name}
   </update>
+  <update id="updateStatus" parameterType="com.ygy.model.User">
+    update user
+    SET status=2
+    WHERE userid=#{userid} AND password=#{password}
+  </update>
 </mapper>

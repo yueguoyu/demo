@@ -35,4 +35,8 @@ public class UserDaoImpl implements UserDao {
     public int addUser(User user) {
         return this.mapper.insert(user);
     }
+    @Override
+    public int updateStatus(User user) {
+        return this.mapper.updateStatus(user);
+    }
 }

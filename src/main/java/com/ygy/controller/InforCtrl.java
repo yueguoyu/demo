@@ -18,15 +18,16 @@ public class InforCtrl {
     @Autowired
     private UserDao dao;
 
-    @GetMapping("/admin/login")
+    @RequestMapping(value = "/admin/login",method= RequestMethod.POST)
     public String login(@ModelAttribute("user1") User user, Model model) {
         boolean result = this.dao.login(user);
         if (result) {
+            this.dao.updateStatus(user);
             model.addAttribute("result", 1);
-            return "main";
+            return "ygy";
         } else {
             model.addAttribute("result", 0);
-            return "main0";
+            return "ygy";
         }
     }
 
@@ -47,7 +48,7 @@ public class InforCtrl {
     public String addUser(@ModelAttribute(value = "User") User user){
         System.out.println(user.getUserid());
         this.dao.addUser(user);
-        return "markDown";
+        return "ygy";
     }
 
 }

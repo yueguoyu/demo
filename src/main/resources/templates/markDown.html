@@ -15,6 +15,9 @@
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="/images/js/markdown.js"></script>
+    <script type="text/javascript">
+
+    </script>
 
 </head>
 <body>
@@ -118,7 +121,8 @@
         <div class="col-md-12 column">
             <div class="jumbotron">
                 <div class="text-center article-title">
-                    登录后你可以发表评论，请先登录 <a id="modal-115854" href="#modal-container-115854" role="button" class="btn" data-toggle="modal">登陆>></a>
+                    登录后你可以发表评论，请先登录
+                    <a id="modal-115855" href="#modal-container-115854" role="button" class="btn" data-toggle="modal">登录>></a>
                 </div>
             </div>
 
@@ -135,57 +139,103 @@
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                             <br/>
-                            <div class="text-center article-title">
-                                <h1>注册</h1>
+                            <div class="tabbable" id="tabs-964343">
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a href="#panel-736797" data-toggle="tab">登录</a>
+                                    </li>
+                                    <li>
+                                        <a href="#panel-628937" data-toggle="tab">注册</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="panel-736797">
+                                        <div class="text-center article-title">
+                                            <h1>登录</h1>
+                                        </div>
+                                        <!--登录-->
+                                        <form th:action="@{/admin/login}" th:object="${User}" th:method="post">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label font" for="phone">手机号</label>
+                                                <div class="col-xs-10">
+                                                    <input type="text" th:field="*{userid}" class="form-control bt" id="phone1" placeholder="请输入手机号"/>
+                                                </div>
+
+                                            </div>
+                                            <br/><br/><br/>
+
+                                            <div class="form-group">
+
+                                                <label class="col-sm-2 control-label font">密码</label>
+                                                <div class="col-xs-10">
+                                                    <input  th:field="*{password}" type="password" class="form-control bt" name="pwd" id="pwd2"
+                                                            placeholder="请输入密码">
+                                                </div>
+                                            </div>
+                                            <br/><br/>
+                                            <button type="submit" class="btn btn-primary btn-lg btn-block xg">登录</button>
+                                        </form>
+
+
+                                    </div>
+                                    <div class="tab-pane" id="panel-628937">
+                                        <div class="text-center article-title">
+                                            <h1>注册</h1>
+                                        </div>
+                                        <form th:action="@{/login/adus}" th:object="${User}" th:method="post">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label font" for="phone">手机号</label>
+                                                <div class="col-xs-10">
+                                                    <input type="text" th:field="*{userid}" class="form-control bt" id="phone" placeholder="请输入手机号"
+                                                           onkeyup="checkPhone()"><span id="tishi1"/>
+                                                </div>
+                                            </div>
+                                            <br/><br/><br/>
+                                            <div class="form-group">
+
+                                                <label class="col-sm-2 control-label font">密码</label>
+                                                <div class="col-xs-10">
+                                                    <input  th:field="*{password}" type="password" class="form-control bt" name="pwd" id="pwd"
+                                                            placeholder="请设置密码">
+                                                </div>
+                                            </div>
+                                            <br/><br/><br/>
+
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label font">确认密码</label>
+                                                <div class="col-xs-10">
+                                                    <input type="password" class="form-control bt" name="pwd" id="pwd1"
+                                                           placeholder="请再次填写密码" onkeyup="validate()"><span id="tishi"></span>
+                                                </div>
+                                            </div>
+                                            <br/><br/>
+                                            <button type="submit" class="btn btn-primary btn-lg btn-block xg">确认</button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
-
-                        <form th:action="@{/login/adus}" th:object="${User}" th:method="post">
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label font" for="phone">手机号</label>
-                                <div class="col-xs-10">
-                                    <input type="text" th:field="*{userid}" class="form-control bt" id="phone" placeholder="请输入手机号"
-                                           onkeyup="checkPhone()"><span id="tishi1"/>
-                                </div>
-
-                            </div>
-                            <br/><br/><br/>
-
-                            <div class="form-group">
-
-                                <label class="col-sm-2 control-label font">新密码</label>
-                                <div class="col-xs-10">
-                                    <input  th:field="*{password}" type="password" class="form-control bt" name="pwd" id="pwd"
-                                            placeholder="请设置新密码">
-                                </div>
-                            </div>
-                            <br/><br/><br/>
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label font">确认新密码</label>
-                                <div class="col-xs-10">
-                                    <input type="password" class="form-control bt" name="pwd" id="pwd1"
-                                           placeholder="请再次填写新密码" onkeyup="validate()"><span id="tishi"></span>
-                                </div>
-                            </div>
-                            <br/><br/>
-                            <button type="submit" class="btn btn-primary btn-lg btn-block xg">确认</button>
-                        </form>
-
-
                     </div>
+
                 </div>
 
             </div>
-
         </div>
-
     </div>
 </div>
-</div>
 <script>
-    function validate() {
+    function Editor(input, preview) {
+        this.update = function () {
+            preview.innerHTML = markdown.toHTML(input.value);
+        };
+        input.editor = this;
+        this.update();
+    }
+    var  j= function (id) { return document.getElementById(id); };
+    new Editor(j("text-input"), j("preview"));
 
+    function validate() {
         var pwd = $("#pwd").val();
         var pwd1 = $("#pwd1").val();
         <!-- 对比两次输入的密码 -->
@@ -212,19 +262,7 @@
             $("#tishi1").css("color","green");
         }
     }
-</script>
 
-
-<script>
-    function Editor(input, preview) {
-        this.update = function () {
-            preview.innerHTML = markdown.toHTML(input.value);
-        };
-        input.editor = this;
-        this.update();
-    }
-    var $ = function (id) { return document.getElementById(id); };
-    new Editor($("text-input"), $("preview"));
 </script>
 </body>
 </html>
