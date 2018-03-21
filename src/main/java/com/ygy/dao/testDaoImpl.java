@@ -11,6 +11,7 @@ public class testDaoImpl implements testDao {
     @Autowired
     T1Mapper mapper;
 
+
     @Override
     @Transactional(rollbackFor = Exception.class)
     public T1 select(int id) {

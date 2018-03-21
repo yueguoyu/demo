@@ -4,9 +4,13 @@ spring:
          username: root
          password: ygy123
          driver-class-name: com.mysql.jdbc.Driver
+       cache:
+       thymeleaf:
+         cache: false
+         mode: LEGACYHTML5
        redis:
          database: 0
-         host: localhost
+         host: 127.0.0.1
          port: 6379
          password:
          pool:
@@ -14,11 +18,8 @@ spring:
            max-wait: -1
            max-idle: 8
            min-idle: 0
-         timeout: 0
-       cache:
-       thymeleaf:
-         cache: false
-         mode: LEGACYHTML5
+         timeout: 60
+
 debug: true
 mybatis:
   mapper-locations: classpath:mapping/*.xml
@@ -31,13 +32,4 @@ pagehelper:
   reasonable: true
   support-methods-arguments: true
   params: count=countSql
-constans:
-      #qq
-      qqAppId: xxxxxxxx
-      qqAppSecret: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-      qqRedirectUrl: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-      #WECAT
-      weCatAppId: xxxxxxxxxx
-      weCatAppSecret: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-      weCatRedirectUrl: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
