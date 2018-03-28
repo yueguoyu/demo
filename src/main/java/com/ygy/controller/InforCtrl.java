@@ -1,9 +1,11 @@
 package com.ygy.controller;
 
 
+import com.ygy.dao.EssayDao;
 import com.ygy.dao.UserDao;
 import com.ygy.model.Essay;
 import com.ygy.model.User;
+import javafx.scene.input.MouseDragEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.*;
 public class InforCtrl {
     @Autowired
     private UserDao dao;
+    @Autowired
+    private EssayDao essayDao;
 
     @RequestMapping(value = "/admin/login",method= RequestMethod.POST)
     public String login(@ModelAttribute("user1") User user, Model model) {
@@ -48,6 +52,13 @@ public class InforCtrl {
     public String addUser(@ModelAttribute(value = "User") User user){
         System.out.println(user.getUserid());
         this.dao.addUser(user);
+        return "ygy";
+    }
+    @RequestMapping(value = "/login")
+    public String index(Model model){
+        Essay essay=this.essayDao.findById(1);
+        model.addAttribute("e1",essay);
+        model.addAttribute("index","true");
         return "ygy";
     }
 

@@ -119,11 +119,10 @@
                         <img alt="" th:src="@{~/images/1.png}"/>
                         <div class="carousel-caption">
                             <h4>
-                                First Thumbnail label
+
                             </h4>
                             <p>
-                                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                                gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                                Strength alone knows conflict, weakness is below even defeat, and is born vanquished.
                             </p>
                         </div>
                     </div>
@@ -131,11 +130,10 @@
                         <img th:src="@{~/images/2.png}"/>
                         <div class="carousel-caption">
                             <h4>
-                                图片标题
+
                             </h4>
                             <p>
-                                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                                gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                                The people who get on in this world are the people who get up and look for circumstances they want, and if they cannot find them, make them.
                             </p>
                         </div>
                     </div>
@@ -143,11 +141,10 @@
                         <img th:src="@{~/images/3.png}"/>
                         <div class="carousel-caption">
                             <h4>
-                                Third Thumbnail label
+
                             </h4>
                             <p>
-                                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                                gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                                The failures and reverses which await men - and one after another sadden the brow of youth - add a dignity to the prospect of human life, which no Arcadian success would do.
                             </p>
                         </div>
                     </div>
@@ -162,16 +159,16 @@
 
             <!--最新的博客1-->
             <div class="jumbotron">
-                <h1>
+                <h1 th:text="${e1.title}">title
                     Hello, world!
                 </h1>
-                <p>
+                <p th:text="${e1.title}">
                     This is a template for a simple marketing or informational website. It includes a large callout
                     called the hero unit and three supporting pieces of content. Use it as a starting point to create
                     something more unique.
                 </p>
                 <p>
-                    <a class="btn btn-primary btn-large" href="#">Learn more</a>
+                    <a class="btn btn-primary btn-large" href="essay/select1?eid=1">Learn more</a>
                 </p>
             </div>
             <!--博客展示-->
@@ -201,52 +198,56 @@
         </div>
         <div class="col-md-6 column">
             <div class="jumbotron">
-                <h1>
-                    Hello, world!
-                </h1>
+                <h2>
+                    每天一本：
+                </h2>
                 <p>
-                    This is a template for a simple marketing or informational website. It includes a large callout
-                    called the hero unit and three supporting pieces of content. Use it as a starting point to create
-                    something more unique.
+                    不管怎样，我老是在想象，有那么一群小孩子在一大块麦田里做游戏。几千几万个小孩子，
+                    附近没有一个人——没有一个大人，我是说——除了我。我呢，就站在那混帐的悬崖边。我得职务是在那儿守望，
+                    要是有哪个孩子往悬崖边奔来，我就把他捉住——我是说孩子们都在狂奔，也不知道自己是在往哪儿跑，
+                    我得从什么地方出来，把他们捉住。我整天就干这样的事。
+                    我只想当个麦田里的守望者（I'd just be the catcher in the rye and all.）。
+
                 </p>
                 <p>
-                    <a class="btn btn-primary btn-large" href="#">Learn more</a>
+                    ----------------------------------《麦田里的守望者》
                 </p>
             </div>
         </div>
         <div class="col-md-4 column">
             <blockquote>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+                    Living without an aim is like sailing without a compass.
                 </p>
-                <small>Someone famous <cite>Source Title</cite></small>
+                <p>
+                    生活没有目标，犹如航海没有罗盘。
+                </p>
+                <small> <cite>John Ruskin</cite></small>
             </blockquote>
             <blockquote>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+                    Fear not that the life shall come to an end, but rather fear that it shall never have a beginning.
                 </p>
-                <small>Someone famous <cite>Source Title</cite></small>
+                <p>
+                    不要害怕你的生活将要结束，应该担心你的生活永远不会真正开始。
+                </p>
+                <small> <cite>J.H. Newman </cite></small>
             </blockquote>
             <blockquote>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+                    We must accept finite disappointment, but we must never lose infinite hope.
                 </p>
-                <small>Someone famous <cite>Source Title</cite></small>
+                <p>
+                    我们必须接受失望，因为它是有限的，但千万不可失去希望，因为它是无穷的。
+                </p>
+                <small> <cite>Mattin Luther King </cite></small>
             </blockquote>
         </div>
     </div>
 </div>
 
 <footer id="footer">
-    <div class="outer">
-        <div id="footer-info" class="inner">
-            <div style="margin: auto"></div>
 
-            <a href="http://www.miitbeian.gov.cn/" target="_blank">皖ICP备17017613号</a>
-            <br/>
-            本站鸣谢 EumJi 李靖 程序员DD | 翟永超 以及 hexo主题 icarus
-        </div>
-    </div>
 </footer>
 </body>
 </html>

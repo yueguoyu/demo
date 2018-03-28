@@ -120,7 +120,7 @@
     <div class="row clearfix">
         <div class="col-md-12 column">
             <div class="jumbotron">
-                <div class="text-center article-title">
+                <div class="text-center article-title" id="denglu">
                     登录后你可以发表评论，请先登录
                     <a id="modal-115855" href="#modal-container-115854" role="button" class="btn" data-toggle="modal">登录>></a>
                 </div>
@@ -212,6 +212,11 @@
                                             <button type="submit" class="btn btn-primary btn-lg btn-block xg">确认</button>
                                         </form>
                                     </div>
+                                    <br>
+                                    <div>
+                                        <p>第三方账号登陆：</p>
+                                       <a href="/login/github"><img th:src="@{~/images/git.jpg}" class="img-circle" style="width: 58px;height: 65px;"></a>
+                                    </div>
                                 </div>
                             </div>
 
@@ -260,6 +265,13 @@
         }else {
             $("#tishi1").html("手机号码正确");
             $("#tishi1").css("color","green");
+        }
+    }
+    function btn() {
+        if (){
+            denglu.style.display='none';
+        }else {
+            denglu.style.display='';
         }
     }
 
