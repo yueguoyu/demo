@@ -6,9 +6,7 @@
 
 ![2](https://github.com/yueguoyu/demo/blob/master/img_blog/3.png)
 
-![4](https://github.com/yueguoyu/demo/blob/master/img_blog/5.png)
-
-![5](https://github.com/yueguoyu/demo/blob/master/img_blog/6.png)
+![5](https://github.com/yueguoyu/demo/blob/master/img_blog/7.png)
 ##  时间：2018/3/21 17：09
 
 > 1. 加入redis作为缓存
