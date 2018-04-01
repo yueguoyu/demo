@@ -64,7 +64,7 @@ public class DemoApplication extends WebSecurityConfigurerAdapter{
 		// @formatter:off
 		http.antMatcher("/**")
 				.authorizeRequests()
-				.antMatchers("/", "/essay/**","/me")
+				.antMatchers("/", "/essay/**","/comm/**")
 				.permitAll()
 				.anyRequest().authenticated()
 				.and()

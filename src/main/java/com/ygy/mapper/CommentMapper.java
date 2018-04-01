@@ -93,4 +93,6 @@ public interface CommentMapper {
      * @mbggenerated Thu Feb 01 13:09:43 CST 2018
      */
     int updateByPrimaryKey(Comment record);
+
+    List<Comment> selectByeid(int eid);
 }

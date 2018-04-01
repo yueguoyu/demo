@@ -283,4 +283,7 @@
       reply = #{reply,jdbcType=VARCHAR}
     where commId = #{commid,jdbcType=INTEGER}
   </update>
+  <select id="selectByeid" parameterType="int" resultType="com.ygy.model.Comment">
+    SELECT * FROM comment WHERE eid=#{eid}
+  </select>
 </mapper>

@@ -129,6 +129,45 @@
         </div>
     </div>
 </div>
+
+<!--评论显示模块-->
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="jumbotron" th:each="comment:${comment1List}">
+                <p th:text="${comment.commname}">:<p th:text="${comment.commtext}"></p></p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="jumbotron">
+                <form role="form" th:action="@{/comm/add}" th:object="${Comment}" th:method="post">
+                    <div class="form-group">
+                        <label>评论：</label>
+                        <div style="display: none">
+
+                                <input th:field="*{eid}" ><p th:text="${essay.eid}"></p></input>
+
+
+                        </div>
+
+                        <textarea class="form-control" th:field="*{commtext}"></textarea>
+                    </div>
+                    <button class="btn btn-default btn-primary">submit</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
 <div class="container">
     <div class="row clearfix">
         <div class="col-md-12 column">
@@ -267,13 +306,7 @@
             $("#tishi1").css("color","green");
         }
     }
-    function btn() {
-        if (){
-            denglu.style.display='none';
-        }else {
-            denglu.style.display='';
-        }
-    }
+
 
 </script>
 </body>

@@ -2,7 +2,9 @@ package com.ygy.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.ygy.dao.CommentDao;
 import com.ygy.dao.EssayDao;
+import com.ygy.model.Comment;
 import com.ygy.model.Essay;
 import com.ygy.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,8 @@ import java.util.List;
 public class EssayCtrl {
     @Autowired
     private EssayDao dao;
+    @Autowired
+    private CommentDao commentDao;
 
     @RequestMapping(value = "/essay/select", method = RequestMethod.GET)
     public String selectTitle(Model model, String title) {
@@ -76,8 +80,10 @@ public class EssayCtrl {
     }
 
     @RequestMapping("/essay/select1")
-    public String selectById(int eid, Model model,@ModelAttribute(value = "User") User user) {
+    public String selectById(int eid, Model model,@ModelAttribute(value = "Comment") Comment comment,@ModelAttribute("User") User user) {
         Essay essay = this.dao.findById(eid);
+        List<Comment> comment1List=this.commentDao.selectByeid(eid);
+        model.addAttribute("comment1List",comment1List);
         model.addAttribute("essay", essay);
         return "markDown";
     }
