@@ -18,7 +18,7 @@ spring:
            max-wait: -1
            max-idle: 8
            min-idle: 0
-         timeout: 60
+         timeout: 600000
 
 debug: true
 mybatis:
@@ -42,7 +42,7 @@ security:
 github:
   client:
     clientId:
-    clientSecret:
+    clientSecret: 
     accessTokenUri: https://github.com/login/oauth/access_token
     userAuthorizationUri: https://github.com/login/oauth/authorize
     clientAuthenticationScheme: form

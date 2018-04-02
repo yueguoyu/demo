@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 散文的增，删，改，查
@@ -82,7 +83,7 @@ public class EssayCtrl {
     @RequestMapping("/essay/select1")
     public String selectById(int eid, Model model,@ModelAttribute(value = "Comment") Comment comment,@ModelAttribute("User") User user) {
         Essay essay = this.dao.findById(eid);
-        List<Comment> comment1List=this.commentDao.selectByeid(eid);
+        List<Map<String,String>> comment1List=this.commentDao.selectByeid(eid);
         model.addAttribute("comment1List",comment1List);
         model.addAttribute("essay", essay);
         return "markDown";

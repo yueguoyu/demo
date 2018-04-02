@@ -3,8 +3,9 @@ package com.ygy.dao;
 import com.ygy.model.Comment;
 
 import java.util.List;
+import java.util.Map;
 
 public interface CommentDao {
-    int addComment(Comment comment);
-    List<Comment> selectByeid(int eid);
+    void addComment(Comment comment);
+    List<Map<String, String>> selectByeid(int eid);
 }

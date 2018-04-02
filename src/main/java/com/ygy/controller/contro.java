@@ -18,7 +18,8 @@ public class contro {
     private CommentDao dao;
 @RequestMapping(value = "/add",method = RequestMethod.POST)
     public void addComment(Comment comment){
-       dao.addComment(comment);
+    dao.addComment(comment);
+    System.out.println(comment.getCommtext());
 }
 @RequestMapping("/scomm")
     public  void sComm(Model model){

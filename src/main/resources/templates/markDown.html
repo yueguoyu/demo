@@ -135,7 +135,7 @@
     <div class="row clearfix">
         <div class="col-md-12 column">
             <div class="jumbotron" th:each="comment:${comment1List}">
-                <p th:text="${comment.commname}">:<p th:text="${comment.commtext}"></p></p>
+                <p th:each="entry :${comment}" th:text="${entry.key}">:<p th:each="entry :${comment}" th:text="${entry.value}"></p></p>
             </div>
 
         </div>
