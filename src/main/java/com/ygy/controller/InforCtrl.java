@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 /**
  * @author ygy
  * 用户注册，登陆
@@ -28,10 +30,10 @@ public class InforCtrl {
         if (result) {
             this.dao.updateStatus(user);
             model.addAttribute("result", 1);
-            return "ygy";
+            return "index";
         } else {
             model.addAttribute("result", 0);
-            return "ygy";
+            return "index";
         }
     }
 
@@ -52,14 +54,14 @@ public class InforCtrl {
     public String addUser(@ModelAttribute(value = "User") User user){
         System.out.println(user.getUserid());
         this.dao.addUser(user);
-        return "ygy";
+        return "index";
     }
     @RequestMapping(value = "/login")
-    public String index(Model model){
+    public String index(Model model,Principal principal){
         Essay essay=this.essayDao.findById(1);
         model.addAttribute("e1",essay);
-        model.addAttribute("index","true");
-        return "ygy";
+//     model.addAttribute("name",principal.getName());
+        return "index";
     }
 
 }

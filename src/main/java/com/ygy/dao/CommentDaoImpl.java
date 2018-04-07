@@ -22,9 +22,9 @@ public class CommentDaoImpl implements CommentDao {
         String key="Essay"+comment.getEid();
        HashOperations<String,String,String> operations=redisTemplate.opsForHash();
         Map<String,String> map=new HashMap<String, String>();
-        map.put("ygy",comment.getCommtext());
-       operations.put(key,"ygy1",comment.getCommtext());
-        System.out.println(operations.values(key));
+        map.put(comment.getCommname(),comment.getCommtext());
+       operations.putAll(key,map);
+        System.out.println("name:"+comment.getCommname());
     }
 
     @Override

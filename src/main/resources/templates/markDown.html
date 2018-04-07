@@ -11,7 +11,7 @@
 
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-
+    <script type="text/javascript" src="/webjars/angularjs/angular.min.js"></script>
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="/images/js/markdown.js"></script>
@@ -20,7 +20,7 @@
     </script>
 
 </head>
-<body>
+<body ng-app="app" ng-controller="home as home">
 <div class="container">
     <div class="row clearfix">
         <div class="col-md-12 column">
@@ -116,7 +116,10 @@
 <div style="display: none" class="jumbotron">
     <textarea th:text="${essay.text}" id="text-input" oninput="this.editor.update()" rows="30" cols="80"></textarea>
 </div>
-<div class="container">
+
+<!--登录入口-->
+
+<div class="container" ng-hide="home.authenticated">
     <div class="row clearfix">
         <div class="col-md-12 column">
             <div class="jumbotron">
@@ -134,8 +137,19 @@
 <div class="container">
     <div class="row clearfix">
         <div class="col-md-12 column">
+
             <div class="jumbotron" th:each="comment:${comment1List}">
-                <p th:each="entry :${comment}" th:text="${entry.key}">:<p th:each="entry :${comment}" th:text="${entry.value}"></p></p>
+                <h3>评论：</h3>
+                <div >
+                    <div th:each="entry :${comment}">
+                        <div style="border: 1px solid bisque">
+                            <p th:text="${entry.key}" style="color: aqua"></p>
+                            <p th:text="${entry.value}"></p>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
 
         </div>
@@ -143,23 +157,25 @@
 </div>
 
 
-<div class="container">
+<div class="container" ng-hide="!home.authenticated">
     <div class="row clearfix">
         <div class="col-md-12 column">
             <div class="jumbotron">
                 <form role="form" th:action="@{/comm/add}" th:object="${Comment}" th:method="post">
                     <div class="form-group">
-                        <label>评论：</label>
+                        <!--评论-->
+                        <label ng-bind="home.user"></label>
+                        <label >:</label>
                         <div style="display: none">
-
-                                <input th:field="*{eid}" ><p th:text="${essay.eid}"></p></input>
-
-
+                            <input th:field="*{eid}" ><p th:text="${essay.eid}"></p></input>
+                            <!--input不能用ng-bind而是ng-model-->
+                            <input th:field="*{commname}" ng-model="home.user"/>
                         </div>
-
                         <textarea class="form-control" th:field="*{commtext}"></textarea>
                     </div>
+
                     <button class="btn btn-default btn-primary">submit</button>
+
                 </form>
             </div>
 
@@ -308,6 +324,37 @@
     }
 
 
+</script>
+<script type="text/javascript">
+    angular
+        .module("app", [])
+        .config(
+            function($httpProvider) {
+                $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+            }).controller("home", function($http, $location) {
+        var self = this;
+        $http.get("/user").success(function(data) {
+            if (data.name) {
+                self.user = data.name;
+                self.authenticated = true;
+            } else {
+                self.user = "N/A";
+                self.authenticated = false;
+            }
+        }).error(function() {
+            self.user = "N/A";
+            self.authenticated = false;
+        });
+        self.logout = function() {
+            $http.post('logout', {}).success(function() {
+                self.authenticated = false;
+                $location.path("/");
+            }).error(function(data) {
+                console.log("Logout failed")
+                self.authenticated = false;
+            });
+        };
+    });
 </script>
 </body>
 </html>

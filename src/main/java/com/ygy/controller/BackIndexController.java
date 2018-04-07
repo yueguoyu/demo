@@ -9,15 +9,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 @Controller
 public class BackIndexController {
     @Autowired
     private EssayDao dao;
     @RequestMapping("/")
-    public String index(Model model
-    ){
+    public String index(Model model){
         Essay essay=this.dao.findById(1);
         model.addAttribute("e1",essay);
-        return "ygy";
+        return "index";
     }
 }

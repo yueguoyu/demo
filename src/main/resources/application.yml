@@ -41,8 +41,8 @@ security:
       client-id: acme
 github:
   client:
-    clientId:
-    clientSecret: 
+    clientId: 5def8df6b9821eab8ee1
+    clientSecret: f3c58b9fb4560b49f81e8158bdf76b6279d796c6
     accessTokenUri: https://github.com/login/oauth/access_token
     userAuthorizationUri: https://github.com/login/oauth/authorize
     clientAuthenticationScheme: form
