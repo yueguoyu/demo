@@ -26,8 +26,10 @@
         <div class="col-md-12 column">
             <nav class="navbar navbar-default navbar-inverse" role="navigation">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span
+                            class="icon-bar"></span>
                         <span class="icon-bar"></span></button>
                     <a class="navbar-brand" href="/">博客</a>
                 </div>
@@ -41,7 +43,8 @@
                             <a href="/essay/bypage" class="glyphicon glyphicon-book">Blog</a>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">type<strong class="caret"></strong></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">type<strong
+                                    class="caret"></strong></a>
                             <ul class="dropdown-menu">
                                 <li>
                                     <a href="cate?cateName=java">java</a>
@@ -66,9 +69,9 @@
                         </li>
                     </ul>
 
-                    <form class="navbar-form navbar-left"  role="search" action="/essay/dim" method="get" >
+                    <form class="navbar-form navbar-left" role="search" action="/essay/dim" method="get">
                         <div class="form-group">
-                            <input type="text"  class="form-control" name="title"/>
+                            <input type="text" class="form-control" name="title"/>
                         </div>
                         <button class="btn btn-default">submit</button>
                     </form>
@@ -78,7 +81,8 @@
                             <a href="/">关于我</a>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong
+                                    class="caret"></strong></a>
                             <ul class="dropdown-menu">
                                 <li>
                                     <a href="#">Action</a>
@@ -109,6 +113,10 @@
             <div class="jumbotron">
                 <h1 th:text="${essay.title}"></h1>
                 <p id="preview"></p>
+                <div>
+                    <a class="glyphicon glyphicon-heart" style="color: rgb(115, 113, 114);float: right"></a>
+                    <span class="badge" style="float: right">3</span>
+                </div>
             </div>
         </div>
     </div>
@@ -139,13 +147,26 @@
         <div class="col-md-12 column">
 
             <div class="jumbotron" th:each="comment:${comment1List}">
-                <h3>评论：</h3>
-                <div >
+                <h3>评论列表：</h3>
+                <div>
                     <div th:each="entry :${comment}">
-                        <div style="border: 1px solid bisque">
-                            <p th:text="${entry.key}" style="color: aqua"></p>
-                            <p th:text="${entry.value}"></p>
-                        </div>
+
+                            <div class="d1">
+                                <div id="p1">
+                                    <p th:text="${entry.key}"/>
+                                </div>
+                                <div  id="p2" style="float: right">
+                                    <a>回复</a>   <a>   引用</a>
+                                </div>
+                            </div>
+                            <div class="d2">
+                                <div class="alert alert-info">
+                                     <span class="glyphicon glyphicon-comment" style="color: rgb(96, 140, 60);">
+                                     <p th:text="${entry.value}"></p>
+                                </span>
+                                </div>
+                            </div>
+
 
                     </div>
                 </div>
@@ -165,9 +186,10 @@
                     <div class="form-group">
                         <!--评论-->
                         <label ng-bind="home.user"></label>
-                        <label >:</label>
+                        <label>:</label>
                         <div style="display: none">
-                            <input th:field="*{eid}" ><p th:text="${essay.eid}"></p></input>
+                            <input th:field="*{eid}">
+                            <p th:text="${essay.eid}"></p></input>
                             <!--input不能用ng-bind而是ng-model-->
                             <input th:field="*{commname}" ng-model="home.user"/>
                         </div>
@@ -213,7 +235,8 @@
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label font" for="phone">手机号</label>
                                                 <div class="col-xs-10">
-                                                    <input type="text" th:field="*{userid}" class="form-control bt" id="phone1" placeholder="请输入手机号"/>
+                                                    <input type="text" th:field="*{userid}" class="form-control bt"
+                                                           id="phone1" placeholder="请输入手机号"/>
                                                 </div>
 
                                             </div>
@@ -223,12 +246,14 @@
 
                                                 <label class="col-sm-2 control-label font">密码</label>
                                                 <div class="col-xs-10">
-                                                    <input  th:field="*{password}" type="password" class="form-control bt" name="pwd" id="pwd2"
-                                                            placeholder="请输入密码">
+                                                    <input th:field="*{password}" type="password"
+                                                           class="form-control bt" name="pwd" id="pwd2"
+                                                           placeholder="请输入密码">
                                                 </div>
                                             </div>
                                             <br/><br/>
-                                            <button type="submit" class="btn btn-primary btn-lg btn-block xg">登录</button>
+                                            <button type="submit" class="btn btn-primary btn-lg btn-block xg">登录
+                                            </button>
                                         </form>
 
 
@@ -241,7 +266,8 @@
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label font" for="phone">手机号</label>
                                                 <div class="col-xs-10">
-                                                    <input type="text" th:field="*{userid}" class="form-control bt" id="phone" placeholder="请输入手机号"
+                                                    <input type="text" th:field="*{userid}" class="form-control bt"
+                                                           id="phone" placeholder="请输入手机号"
                                                            onkeyup="checkPhone()"><span id="tishi1"/>
                                                 </div>
                                             </div>
@@ -250,8 +276,9 @@
 
                                                 <label class="col-sm-2 control-label font">密码</label>
                                                 <div class="col-xs-10">
-                                                    <input  th:field="*{password}" type="password" class="form-control bt" name="pwd" id="pwd"
-                                                            placeholder="请设置密码">
+                                                    <input th:field="*{password}" type="password"
+                                                           class="form-control bt" name="pwd" id="pwd"
+                                                           placeholder="请设置密码">
                                                 </div>
                                             </div>
                                             <br/><br/><br/>
@@ -260,17 +287,20 @@
                                                 <label class="col-sm-2 control-label font">确认密码</label>
                                                 <div class="col-xs-10">
                                                     <input type="password" class="form-control bt" name="pwd" id="pwd1"
-                                                           placeholder="请再次填写密码" onkeyup="validate()"><span id="tishi"></span>
+                                                           placeholder="请再次填写密码" onkeyup="validate()"><span
+                                                        id="tishi"></span>
                                                 </div>
                                             </div>
                                             <br/><br/>
-                                            <button type="submit" class="btn btn-primary btn-lg btn-block xg">确认</button>
+                                            <button type="submit" class="btn btn-primary btn-lg btn-block xg">确认
+                                            </button>
                                         </form>
                                     </div>
                                     <br>
                                     <div>
                                         <p>第三方账号登陆：</p>
-                                       <a href="/login/github"><img th:src="@{~/images/git.jpg}" class="img-circle" style="width: 58px;height: 65px;"></a>
+                                        <a href="/login/github"><img th:src="@{~/images/git.jpg}" class="img-circle"
+                                                                     style="width: 58px;height: 65px;"></a>
                                     </div>
                                 </div>
                             </div>
@@ -292,34 +322,37 @@
         input.editor = this;
         this.update();
     }
-    var  j= function (id) { return document.getElementById(id); };
+
+    var j = function (id) {
+        return document.getElementById(id);
+    };
     new Editor(j("text-input"), j("preview"));
 
     function validate() {
         var pwd = $("#pwd").val();
         var pwd1 = $("#pwd1").val();
         <!-- 对比两次输入的密码 -->
-        if(pwd == pwd1)
-        {
+        if (pwd == pwd1) {
             $("#tishi").html("两次密码相同");
-            $("#tishi").css("color","green");
+            $("#tishi").css("color", "green");
             $("button").removeAttr("disabled");
         }
         else {
             $("#tishi").html("两次密码不相同");
-            $("#tishi").css("color","red");
-            $("button").attr("disabled","disabled");
+            $("#tishi").css("color", "red");
+            $("button").attr("disabled", "disabled");
         }
     }
-    function checkPhone(){
+
+    function checkPhone() {
         var phone = document.getElementById('phone').value;
-        if(!(/^1[34578]\d{9}$/.test(phone))){
+        if (!(/^1[34578]\d{9}$/.test(phone))) {
             $("#tishi1").html("手机号码有误，请重填");
-            $("#tishi1").css("color","red");
+            $("#tishi1").css("color", "red");
             return false;
-        }else {
+        } else {
             $("#tishi1").html("手机号码正确");
-            $("#tishi1").css("color","green");
+            $("#tishi1").css("color", "green");
         }
     }
 
@@ -329,11 +362,11 @@
     angular
         .module("app", [])
         .config(
-            function($httpProvider) {
+            function ($httpProvider) {
                 $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-            }).controller("home", function($http, $location) {
+            }).controller("home", function ($http, $location) {
         var self = this;
-        $http.get("/user").success(function(data) {
+        $http.get("/user").success(function (data) {
             if (data.name) {
                 self.user = data.name;
                 self.authenticated = true;
@@ -341,15 +374,15 @@
                 self.user = "N/A";
                 self.authenticated = false;
             }
-        }).error(function() {
+        }).error(function () {
             self.user = "N/A";
             self.authenticated = false;
         });
-        self.logout = function() {
-            $http.post('logout', {}).success(function() {
+        self.logout = function () {
+            $http.post('logout', {}).success(function () {
                 self.authenticated = false;
                 $location.path("/");
-            }).error(function(data) {
+            }).error(function (data) {
                 console.log("Logout failed")
                 self.authenticated = false;
             });

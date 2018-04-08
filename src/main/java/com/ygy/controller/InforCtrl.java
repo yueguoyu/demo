@@ -50,12 +50,6 @@ public class InforCtrl {
         }
     }
 
-    @RequestMapping(value = "/login/adus",method = RequestMethod.POST)
-    public String addUser(@ModelAttribute(value = "User") User user){
-        System.out.println(user.getUserid());
-        this.dao.addUser(user);
-        return "index";
-    }
     @RequestMapping(value = "/login")
     public String index(Model model,Principal principal){
         Essay essay=this.essayDao.findById(1);

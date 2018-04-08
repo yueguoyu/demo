@@ -341,4 +341,8 @@
         </where>
         ORDER BY eid
     </select>
+    <select id="findHitByeid" parameterType="int" resultType="int">
+        SELECT e.hit FROM essay e
+        WHERE e.eid=#{eid}
+    </select>
 </mapper>

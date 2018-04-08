@@ -137,4 +137,10 @@ public interface EssayMapper {
      * @return
      */
    List<Essay> findByDim(String title);
+    /**
+     * 获取文章的点赞数
+     * @param eid
+     * @return hite
+     */
+    int findHitByeid(int eid);
 }
