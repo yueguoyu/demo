@@ -22,17 +22,16 @@ public class RedisDaoImpl implements RedisDao {
 
     @Override
     public void addhit(int eid) {
+        HashOperations<String, Integer, Integer> operations = redisTemplate.opsForHash();
         int hit;
         try {
-            hit = mapper.findHitByeid(eid);
+             hit= operations.get("hitHash", eid);
         } catch (Exception e) {
-            hit = 0;
+            hit=0;
         }
-        hit++;
-        ZSetOperations<String, Integer> operations = redisTemplate.opsForZSet();
-        String key = "score";
-        operations.add(key, eid, hit);
 
+        hit++;
+        operations.put("hitHash", eid, hit);
     }
 
     @Override
@@ -46,7 +45,12 @@ public class RedisDaoImpl implements RedisDao {
             map.put(eid, essay.getHit());
             operations.putAll("hitHash", map);
         } else {
-            hit = operations.get("hitHash", eid);
+            try {
+                hit = operations.get("hitHash", eid);
+            } catch (Exception e) {
+                hit = 0;
+            }
+
         }
         return hit;
     }

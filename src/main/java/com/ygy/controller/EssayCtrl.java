@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.ygy.dao.CommentDao;
 import com.ygy.dao.EssayDao;
+import com.ygy.dao.RedisDao;
 import com.ygy.model.Comment;
 import com.ygy.model.Essay;
 import com.ygy.model.User;
@@ -33,13 +34,15 @@ public class EssayCtrl {
     private EssayDao dao;
     @Autowired
     private CommentDao commentDao;
+    @Autowired
+    private RedisDao redisDao;
 
     @RequestMapping(value = "/essay/select", method = RequestMethod.GET)
     public String selectTitle(Model model, String title) {
         Essay essay = this.dao.SelectTitle(title);
         model.addAttribute("essay2", essay.getTitle());
         model.addAttribute("essay1", essay.getText());
-        return "ygy";
+        return "index";
     }
 
     /**
@@ -66,7 +69,7 @@ public class EssayCtrl {
     public String allEssay(Model model) {
         List<Essay> list = this.dao.SelectAllEssay();
         model.addAttribute("list", list);
-        return "ygy";
+        return "index";
     }
 
     @RequestMapping(value = "/essay/bypage", method = RequestMethod.GET)
@@ -80,12 +83,14 @@ public class EssayCtrl {
         return "blog";
     }
 
-    @RequestMapping("/essay/select1")
+    @RequestMapping({"/essay/select1"})
     public String selectById(int eid, Model model,@ModelAttribute(value = "Comment") Comment comment,@ModelAttribute("User") User user) {
         Essay essay = this.dao.findById(eid);
         List<Map<String,String>> comment1List=this.commentDao.selectByeid(eid);
+        int hit=redisDao.selecthit(eid);
         model.addAttribute("comment1List",comment1List);
         model.addAttribute("essay", essay);
+        model.addAttribute("hit",hit);
         return "markDown";
     }
 

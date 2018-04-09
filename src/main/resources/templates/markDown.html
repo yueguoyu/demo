@@ -114,8 +114,8 @@
                 <h1 th:text="${essay.title}"></h1>
                 <p id="preview"></p>
                 <div>
-                    <a class="glyphicon glyphicon-heart" style="color: rgb(115, 113, 114);float: right"></a>
-                    <span class="badge" style="float: right">3</span>
+                    <a  class="glyphicon glyphicon-heart" style="color: rgb(115, 113, 114);float: right" th:href="@{/hit/addhit?(eid=${essay.eid})}"></a>
+                    <span class="badge" style="float: right" th:text="${hit}"></span>
                 </div>
             </div>
         </div>
