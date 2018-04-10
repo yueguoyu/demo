@@ -114,7 +114,18 @@
                 <h1 th:text="${essay.title}"></h1>
                 <p id="preview"></p>
                 <div>
-                    <a  class="glyphicon glyphicon-heart" style="color: rgb(115, 113, 114);float: right" th:href="@{/hit/addhit?(eid=${essay.eid})}"></a>
+                        <form role="form" th:action="@{/hit/addhit}" th:object="${Comment}" th:method="post">
+                            <div>
+                                <div style="display: none">
+                                    <input th:field="*{eid}">
+                                    <p th:text="${essay.eid}"></p></input>
+                                    <!--input不能用ng-bind而是ng-model-->
+                                    <input th:field="*{commname}" ng-model="home.user"/>
+                                </div>
+                            </div>
+                            <button id="but1" class="glyphicon glyphicon-heart" style="color: rgb(115, 113, 114);float: right;border: none;background-color: #EEEEEE"></button>
+                        </form>
+                    <!--<a  class="glyphicon glyphicon-heart" style="color: rgb(115, 113, 114);float: right" th:href="@{/hit/addhit?(eid=${essay.eid})}"></a>-->
                     <span class="badge" style="float: right" th:text="${hit}"></span>
                 </div>
             </div>

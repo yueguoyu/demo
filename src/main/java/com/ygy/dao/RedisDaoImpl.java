@@ -6,6 +6,7 @@ import org.hibernate.validator.internal.engine.messageinterpolation.parser.ELSta
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.SetOperations;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Service;
 
@@ -15,23 +16,35 @@ import java.util.Set;
 
 @Service
 public class RedisDaoImpl implements RedisDao {
+
     @Autowired
     EssayMapper mapper;
     @Autowired
     private RedisTemplate redisTemplate;
+    static SetOperations<Integer,String> operations1;
+    static HashOperations<String, Integer, Integer> operations;
 
     @Override
-    public void addhit(int eid) {
-        HashOperations<String, Integer, Integer> operations = redisTemplate.opsForHash();
+    public void addhit(int eid,String username) {
+         operations1=redisTemplate.opsForSet();
+       operations = redisTemplate.opsForHash();
+
         int hit;
         try {
              hit= operations.get("hitHash", eid);
         } catch (Exception e) {
             hit=0;
         }
+//加一个判断
+        if (!operations1.isMember(eid,username)){
+            hit++;
+            operations1.add(eid,username);
+            operations.put("hitHash", eid, hit);
+        }else {
+            System.out.println("hahhahahah");
+//            return;
+        }
 
-        hit++;
-        operations.put("hitHash", eid, hit);
     }
 
     @Override
