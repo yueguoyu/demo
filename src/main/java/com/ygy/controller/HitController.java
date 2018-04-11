@@ -35,6 +35,7 @@ public class HitController {
         if (comment.getCommname()!=null){
             redisDao.addhit(eid,comment.getCommname());
         }
+
         try {
             response.sendRedirect("/essay/select1"+"?&eid="+eid);
         } catch (IOException e) {

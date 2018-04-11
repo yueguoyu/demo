@@ -71,4 +71,6 @@ public interface EssayDao {
      */
     List<Essay> findByDim(String title);
 
+    List<Essay> sortByHit();
+
 }

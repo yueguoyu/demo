@@ -9,16 +9,17 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -76,11 +77,12 @@ public class EssayDaoImpl implements EssayDao {
     public List<Essay> SelectAllEssay() {
         return this.mapper.selectAllEssay();
     }
-
+    ZSetOperations<String,Essay> zSetOperations;
     @Override
     @Transactional(rollbackFor = Exception.class)
     public List<Essay> findByPage() {
-        return this.mapper.findByPage();
+        List<Essay> essayList= this.mapper.findByPage();
+        return  essayList;
     }
 
     @Override
@@ -127,5 +129,25 @@ public class EssayDaoImpl implements EssayDao {
         List<Essay> essays=this.mapper.findByDim(title);
         operations.set(key,essays,60,TimeUnit.SECONDS);
         return essays;
+    }
+
+    @Override
+    public List<Essay> sortByHit() {
+        zSetOperations=redisTemplate.opsForZSet();
+        HashOperations<String, Integer, Integer> operations=redisTemplate.opsForHash();
+        List<Essay> essayList= this.mapper.findByPage();
+        int hit=0;
+        for (Essay essay:essayList){
+            try{
+                hit=operations.get("hitHash",essay.getEid());
+            }catch (Exception e){
+
+            }
+            zSetOperations.add("hitZset",essay,hit);
+        }
+
+        Set<Essay> set=zSetOperations.reverseRange("hitZset",0,2);
+        List<Essay> newEssayList1=new ArrayList<Essay>(set);
+        return newEssayList1;
     }
 }
