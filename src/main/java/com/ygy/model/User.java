@@ -1,5 +1,6 @@
 package com.ygy.model;
 
+import javax.validation.constraints.NotNull;
 import java.math.BigInteger;
 
 public class User {
@@ -9,6 +10,7 @@ public class User {
      *
      * @mbggenerated Thu Feb 01 13:09:43 CST 2018
      */
+    @NotNull
     private BigInteger userid;
     private Integer rid;
 

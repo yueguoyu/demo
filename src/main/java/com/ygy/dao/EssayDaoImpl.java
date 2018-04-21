@@ -1,9 +1,14 @@
 package com.ygy.dao;
 
 import com.github.pagehelper.PageHelper;
+import com.google.common.base.Charsets;
+import com.google.common.hash.BloomFilter;
+import com.google.common.hash.Funnels;
 import com.ygy.mapper.EssayMapper;
 import com.ygy.model.Essay;
+import groovy.transform.ASTTest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.cache.CacheProperties;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -14,9 +19,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.persistence.criteria.CriteriaBuilder;
 import java.io.Serializable;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -36,14 +43,37 @@ public class EssayDaoImpl implements EssayDao {
 
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
+    private BloomFilter<String> bloomfil;
+    /**
+     * 在spring容器初始化的时候执行该方法
+     */
+    @PostConstruct
+    private void init(){
+        List<String> list=mapper.findAllTitle();
+        //布隆过滤器的容量
+        int bloomfilLen=(int)(list.size()*1.2);
+        bloomfil= com.google.common.hash.BloomFilter.create(Funnels.stringFunnel(Charsets.UTF_8),bloomfilLen,0.001);
+        for (String str:list){
+            //因为我的题目有null
+            if (str!=null){
+                bloomfil.put(str);
+            }
+
+        }
+    }
 
     @Override
     @Transactional
-
+//
     public Essay SelectTitle(String title) {
         ValueOperations<String,Essay> operations=redisTemplate.opsForValue();
         boolean haskey=redisTemplate.hasKey(title);
+        if (!bloomfil.mightContain(title)){
+            System.out.println("hahhahahhahhahaha");
+            return null;
+        }
         if (haskey){
+            System.out.println("by========redis");
            Essay essay= operations.get(title);
            return essay;
         }

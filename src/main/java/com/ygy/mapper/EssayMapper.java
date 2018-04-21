@@ -143,4 +143,10 @@ public interface EssayMapper {
      * @return hite
      */
     int findHitByeid(int eid);
+
+    /**
+     * 获取文章的所有题目
+     * @return String
+     */
+    List<String> findAllTitle();
 }

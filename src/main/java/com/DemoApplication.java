@@ -126,7 +126,6 @@ public class DemoApplication extends WebSecurityConfigurerAdapter{
 	private Filter ssoFilter() {
 		CompositeFilter filter = new CompositeFilter();
 		List<Filter> filters = new ArrayList<Filter>();
-		filters.add(ssoFilter(facebook(), "/login/facebook"));
 		filters.add(ssoFilter(github(), "/login/github"));
 		filter.setFilters(filters);
 		return filter;
@@ -151,11 +150,7 @@ public class DemoApplication extends WebSecurityConfigurerAdapter{
 		return new ClientResources();
 	}
 
-	@Bean
-	@ConfigurationProperties("facebook")
-	public ClientResources facebook() {
-		return new ClientResources();
-	}
+
 
 	@Configuration
 	@EnableResourceServer

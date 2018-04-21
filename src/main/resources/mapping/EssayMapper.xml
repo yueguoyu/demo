@@ -345,4 +345,7 @@
         SELECT e.hit FROM essay e
         WHERE e.eid=#{eid}
     </select>
+    <select id="findAllTitle" resultType="String">
+        SELECT essay.title FROM essay
+    </select>
 </mapper>
